@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>גְּאוּלִי — הורים בעסקים</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>גְּאוּלִי — הורים ואנשי צוות בעסקים</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@700;900&family=Frank+Ruhl+Libre:wght@400;700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
@@ -19,7 +19,7 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
 /* Hero */
 .hero {
     background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
-    padding:60px 20px 50px; text-align:center; position:relative; overflow:hidden;
+    padding:50px 20px 40px; text-align:center; position:relative; overflow:hidden;
 }
 .hero::after {
     content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
@@ -27,61 +27,70 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
 }
 .hero-logo { margin-bottom:8px; }
 .hero-title {
-    font-family:'Noto Serif Hebrew',serif; font-size:56px; font-weight:900;
-    color:#fff; -webkit-text-stroke:2px var(--gold); paint-order:stroke fill;
-    letter-spacing:3px; line-height:1.1;
+    font-family:'Noto Serif Hebrew','Frank Ruhl Libre',serif; font-size:56px; font-weight:900;
+    color:#fff; -webkit-text-stroke:1.5px var(--gold); paint-order:stroke fill;
+    letter-spacing:4px; line-height:1.2;
 }
 .hero-gold-line { width:80px; height:3px; background:var(--gold); margin:12px auto; border-radius:2px; opacity:0.7; }
 .hero-subtitle {
-    font-size:22px; font-weight:700; color:var(--gold-light); margin-top:8px; letter-spacing:1px;
+    font-size:20px; font-weight:700; color:var(--gold-light); margin-top:8px; letter-spacing:1px;
 }
 .hero-desc {
-    font-size:15px; font-weight:300; color:rgba(255,255,255,0.5); margin-top:6px; letter-spacing:1px;
+    font-size:14px; font-weight:300; color:rgba(255,255,255,0.5); margin-top:6px; letter-spacing:1px;
 }
 
+/* Tabs */
+.tabs {
+    display:flex; justify-content:center; gap:0; background:#fff;
+    border-bottom:2px solid #eee; position:sticky; top:0; z-index:10;
+}
+.tab-btn {
+    padding:14px 24px; border:none; background:none; cursor:pointer;
+    font-family:'Heebo',sans-serif; font-size:15px; font-weight:500; color:#888;
+    border-bottom:3px solid transparent; transition:all 0.2s;
+}
+.tab-btn.active { color:var(--navy); border-bottom-color:var(--gold); font-weight:700; }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
 /* Content */
-.container { max-width:640px; margin:0 auto; padding:32px 20px; }
+.container { max-width:640px; margin:0 auto; padding:28px 20px; }
 
 .intro-card {
-    background:#fff; border-radius:16px; padding:28px 24px; margin-bottom:28px;
+    background:#fff; border-radius:16px; padding:24px 22px; margin-bottom:24px;
     border:1px solid rgba(201,165,76,0.2); box-shadow:0 2px 20px rgba(15,27,51,0.06);
 }
 .intro-card h2 {
-    font-family:'Noto Serif Hebrew',serif; font-size:22px; font-weight:700;
-    color:var(--navy); margin-bottom:12px; line-height:1.4;
+    font-family:'Noto Serif Hebrew',serif; font-size:21px; font-weight:700;
+    color:var(--navy); margin-bottom:10px; line-height:1.4;
 }
-.intro-card p {
-    font-size:15px; line-height:1.8; color:#444; font-weight:400;
-}
+.intro-card p { font-size:15px; line-height:1.8; color:#444; }
 .intro-card .highlight {
-    background: var(--gold-glow); padding:12px 16px; border-radius:10px;
-    border-right:3px solid var(--gold); margin-top:16px; font-size:14px; line-height:1.7; color:var(--navy);
+    background:var(--gold-glow); padding:12px 16px; border-radius:10px;
+    border-right:3px solid var(--gold); margin-top:14px; font-size:14px; line-height:1.7; color:var(--navy);
 }
 
 /* Form */
 .form-card {
-    background:#fff; border-radius:16px; padding:28px 24px;
+    background:#fff; border-radius:16px; padding:24px 22px;
     border:1px solid rgba(201,165,76,0.2); box-shadow:0 2px 20px rgba(15,27,51,0.06);
 }
 .form-card h2 {
-    font-family:'Noto Serif Hebrew',serif; font-size:20px; font-weight:700;
-    color:var(--navy); margin-bottom:20px; text-align:center;
+    font-family:'Noto Serif Hebrew',serif; font-size:19px; font-weight:700;
+    color:var(--navy); margin-bottom:18px; text-align:center;
 }
-.form-group { margin-bottom:16px; }
-.form-group label {
-    display:block; font-size:14px; font-weight:500; color:var(--navy); margin-bottom:6px;
-}
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:14px; font-weight:500; color:var(--navy); margin-bottom:5px; }
 .form-group label .required { color:#c0392b; }
 .form-group input, .form-group select, .form-group textarea {
     width:100%; padding:10px 14px; border:1.5px solid #ddd; border-radius:10px;
-    font-family:'Heebo',sans-serif; font-size:15px; color:var(--navy);
-    transition: border-color 0.2s;
+    font-family:'Heebo',sans-serif; font-size:15px; color:var(--navy); transition:border-color 0.2s;
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline:none; border-color:var(--gold);
-}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--gold); }
 .form-group select { appearance:none; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat left 14px center; padding-left:36px; }
 .form-group textarea { resize:vertical; min-height:60px; }
+.form-row { display:flex; gap:10px; }
+.form-row .form-group { flex:1; }
 
 .role-toggle { display:flex; gap:8px; }
 .role-toggle label {
@@ -90,49 +99,89 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
     font-size:14px; font-weight:500; transition:all 0.2s;
 }
 .role-toggle input { display:none; }
-.role-toggle input:checked + span { /* handled via JS */ }
-.role-toggle label.active {
-    border-color:var(--gold); background:var(--gold-glow); color:var(--navy);
+.role-toggle label.active { border-color:var(--gold); background:var(--gold-glow); }
+
+/* Image upload */
+.image-upload {
+    border:2px dashed #ddd; border-radius:12px; padding:20px; text-align:center;
+    cursor:pointer; transition:border-color 0.2s; position:relative; overflow:hidden;
 }
+.image-upload:hover { border-color:var(--gold); }
+.image-upload input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+.image-upload .placeholder { font-size:13px; color:#999; }
+.image-upload .placeholder svg { display:block; margin:0 auto 6px; }
+.image-preview { width:80px; height:80px; border-radius:10px; object-fit:cover; display:none; margin:0 auto; }
 
 .submit-btn {
     width:100%; padding:14px; border:none; border-radius:12px; cursor:pointer;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
     color:var(--navy); font-family:'Heebo',sans-serif; font-size:17px; font-weight:700;
     letter-spacing:0.5px; transition:transform 0.15s, box-shadow 0.15s; margin-top:8px;
 }
 .submit-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,165,76,0.3); }
-.submit-btn:active { transform:translateY(0); }
 .submit-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
 
 /* Success */
-.success-msg {
-    display:none; text-align:center; padding:40px 20px;
-}
-.success-msg .check { font-size:48px; margin-bottom:12px; }
+.success-msg { display:none; text-align:center; padding:40px 20px; }
+.success-msg .check { font-size:48px; margin-bottom:12px; color:var(--gold); }
 .success-msg h3 { font-family:'Noto Serif Hebrew',serif; font-size:22px; color:var(--navy); margin-bottom:8px; }
 .success-msg p { font-size:15px; color:#666; line-height:1.6; }
 
-/* Footer */
-.footer {
-    text-align:center; padding:24px 20px; font-size:12px; color:rgba(27,42,74,0.4);
-    letter-spacing:0.5px;
+/* Directory */
+.dir-container { max-width:720px; margin:0 auto; padding:24px 20px; }
+.dir-empty { text-align:center; padding:40px; color:#999; font-size:15px; }
+.dir-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:16px; }
+.biz-card {
+    background:#fff; border-radius:14px; padding:16px; text-align:center;
+    border:1px solid rgba(201,165,76,0.15); box-shadow:0 2px 12px rgba(15,27,51,0.04);
+    transition:transform 0.2s, box-shadow 0.2s;
 }
+.biz-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(15,27,51,0.08); }
+.biz-card .biz-img {
+    width:72px; height:72px; border-radius:50%; object-fit:cover;
+    margin:0 auto 10px; display:block; border:2px solid var(--gold-glow);
+}
+.biz-card .biz-placeholder {
+    width:72px; height:72px; border-radius:50%; margin:0 auto 10px;
+    background:linear-gradient(135deg, var(--navy) 0%, #2a3f6a 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px; color:var(--gold); font-weight:700;
+}
+.biz-card .biz-name { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:2px; }
+.biz-card .biz-field { font-size:12px; color:var(--gold); font-weight:500; margin-bottom:6px; }
+.biz-card .biz-parent { font-size:12px; color:#888; margin-bottom:10px; }
+.biz-card .biz-actions { display:flex; gap:8px; justify-content:center; }
+.biz-card .biz-actions a {
+    display:inline-flex; align-items:center; gap:4px; padding:6px 12px;
+    border-radius:8px; font-size:12px; font-weight:500; text-decoration:none; transition:background 0.2s;
+}
+.btn-wa { background:#25D366; color:#fff; }
+.btn-wa:hover { background:#1da851; }
+.btn-phone { background:var(--navy); color:#fff; }
+.btn-phone:hover { background:#2a3f6a; }
+.btn-web { background:var(--gold-glow); color:var(--navy); border:1px solid rgba(201,165,76,0.3); }
+.btn-web:hover { background:rgba(201,165,76,0.25); }
 
-/* Mobile */
+.dir-loading { text-align:center; padding:40px; color:#999; }
+
+/* Footer */
+.footer { text-align:center; padding:20px; font-size:12px; color:rgba(27,42,74,0.4); letter-spacing:0.5px; }
+
 @media(max-width:480px) {
-    .hero { padding:40px 16px 36px; }
+    .hero { padding:36px 16px 30px; }
     .hero-title { font-size:42px; }
-    .hero-subtitle { font-size:18px; }
-    .container { padding:24px 16px; }
-    .intro-card, .form-card { padding:22px 18px; }
+    .hero-subtitle { font-size:17px; }
+    .container, .dir-container { padding:20px 16px; }
+    .form-row { flex-direction:column; gap:0; }
+    .dir-grid { grid-template-columns:1fr 1fr; gap:12px; }
+    .tab-btn { padding:12px 16px; font-size:13px; }
 }
 </style>
 </head>
 <body>
 
 <div class="hero">
-    <svg class="hero-logo" width="56" height="56" viewBox="0 0 72 72" fill="none">
+    <svg class="hero-logo" width="50" height="50" viewBox="0 0 72 72" fill="none">
         <rect x="3" y="3" width="66" height="66" rx="16" stroke="rgba(201,165,76,0.4)" stroke-width="1.5"/>
         <g transform="translate(36,35)">
             <path d="M0 18 L0 0" stroke="#C9A54C" stroke-width="2" stroke-linecap="round"/>
@@ -143,16 +192,22 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
     </svg>
     <div class="hero-title">גְּאוּלִי</div>
     <div class="hero-gold-line"></div>
-    <div class="hero-subtitle">הורים בעסקים</div>
+    <div class="hero-subtitle">הורים ואנשי צוות בעסקים</div>
     <div class="hero-desc">בית ספר גאולים, שכונת בקעה, ירושלים</div>
 </div>
 
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('form')">הרשמה</button>
+    <button class="tab-btn" onclick="switchTab('directory')">מדריך העסקים</button>
+</div>
+
+<!-- TAB: Form -->
+<div class="tab-content active" id="tab-form">
 <div class="container">
     <div class="intro-card">
-        <h2>קהילה שמפרגנת — מתחילה מהבית</h2>
+        <h2>קהילה שמפרגנת — מתחילה מבית הספר :)</h2>
         <p>
-            אנחנו מאמינים שבקהילה חזקה כולם מרוויחים.
-            בין ההורים ואנשי הצוות של בית ספר גאולים יש בעלי עסקים, יועצים, נותני שירות ואנשי מקצוע מכל תחום — ואנחנו רוצים להכיר אתכם!
+            בגאולים יש נותני שירות, בעלי מסעדות, אוכל ביתי, יצירה, שיווק, חינוך, טכנולוגיה ועוד — ואנחנו רוצים להכיר אתכם!
         </p>
         <div class="highlight">
             המטרה פשוטה: ליצור מדריך עסקים קהילתי, כדי שנוכל לפרגן אחד לשנייה, להמליץ, לצרוך מקומי ולחזק את הקהילה שלנו מבפנים.
@@ -181,6 +236,17 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
                 </div>
             </div>
 
+            <div class="form-row">
+                <div class="form-group">
+                    <label>שם הילד/ה</label>
+                    <input type="text" id="childName" placeholder="שם הילד/ה">
+                </div>
+                <div class="form-group">
+                    <label>כיתה</label>
+                    <input type="text" id="childClass" placeholder="לדוגמה: ב'2">
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>שם העסק <span class="required">*</span></label>
                 <input type="text" id="bizName" required placeholder="שם העסק או הפעילות">
@@ -205,6 +271,18 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
                     <option value="תיירות ופנאי">תיירות ופנאי</option>
                     <option value="אחר">אחר</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label>תמונה או לוגו של העסק</label>
+                <div class="image-upload" id="imageUpload">
+                    <input type="file" accept="image/*" id="imageFile" onchange="previewImage(this)">
+                    <img class="image-preview" id="imagePreview">
+                    <div class="placeholder" id="imgPlaceholder">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        גררו תמונה לכאן או לחצו לבחירה
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -237,18 +315,59 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
         <p>קיבלנו את הפרטים. העסק שלכם ייכנס למדריך הקהילתי של גאולי.<br>יחד אנחנו בונים קהילה שמפרגנת!</p>
     </div>
 </div>
+</div>
+
+<!-- TAB: Directory -->
+<div class="tab-content" id="tab-directory">
+<div class="dir-container">
+    <div class="dir-loading" id="dirLoading">טוען עסקים...</div>
+    <div class="dir-grid" id="dirGrid"></div>
+    <div class="dir-empty" id="dirEmpty" style="display:none">
+        עדיין אין עסקים רשומים. היו הראשונים!
+    </div>
+</div>
+</div>
 
 <div class="footer">גְּאוּלִי — קהילת ההורים החברתית של בית ספר גאולים</div>
 
 <script>
 const API_URL = 'https://vhmwijzcrqjjquxomccq.supabase.co/functions/v1/geuli-business';
 
+const FIELD_ICONS = {
+    'אוכל ומזון':'&#127858;','בריאות ורווחה':'&#128153;','חינוך והדרכה':'&#128218;',
+    'עיצוב ואדריכלות':'&#127912;','טכנולוגיה ודיגיטל':'&#128187;','שיווק ופרסום':'&#128227;',
+    'משפטים וייעוץ':'&#9878;','טיפול ורפואה':'&#128138;','אמנות ויצירה':'&#127912;',
+    'ספורט וכושר':'&#127947;','שירותים לבית':'&#127968;','פיננסים וביטוח':'&#128176;',
+    'תיירות ופנאי':'&#9992;','אחר':'&#11088;'
+};
+
 let selectedRole = 'הורה';
+let imageDataUrl = null;
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (tab==='form'?i===0:i===1)));
+    document.getElementById('tab-form').classList.toggle('active', tab==='form');
+    document.getElementById('tab-directory').classList.toggle('active', tab==='directory');
+    if (tab === 'directory') loadDirectory();
+}
 
 function setRole(el, role) {
     selectedRole = role;
     document.querySelectorAll('.role-toggle label').forEach(l => l.classList.remove('active'));
     el.classList.add('active');
+}
+
+function previewImage(input) {
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        imageDataUrl = e.target.result;
+        const preview = document.getElementById('imagePreview');
+        preview.src = imageDataUrl;
+        preview.style.display = 'block';
+        document.getElementById('imgPlaceholder').style.display = 'none';
+    };
+    reader.readAsDataURL(input.files[0]);
 }
 
 document.getElementById('bizForm').addEventListener('submit', async function(e) {
@@ -257,15 +376,21 @@ document.getElementById('bizForm').addEventListener('submit', async function(e) 
     btn.disabled = true;
     btn.textContent = 'שולח...';
 
+    const childName = document.getElementById('childName').value.trim();
+    const childClass = document.getElementById('childClass').value.trim();
+    const childInfo = childName ? (selectedRole === 'הורה' ? 'הורה של ' : 'מחנך/ת של ') + childName + (childClass ? ' מכיתה ' + childClass : '') : '';
+
     const data = {
         parent_name: document.getElementById('parentName').value.trim(),
         role: selectedRole,
+        child_info: childInfo,
         business_name: document.getElementById('bizName').value.trim(),
         business_field: document.getElementById('bizField').value,
         website_url: document.getElementById('bizUrl').value.trim() || null,
         phone: document.getElementById('bizPhone').value.trim(),
         contact_info: document.getElementById('contactInfo').value.trim() || null,
-        notes: document.getElementById('bizNote').value.trim() || null
+        notes: document.getElementById('bizNote').value.trim() || null,
+        image_url: imageDataUrl || null
     };
 
     try {
@@ -283,6 +408,57 @@ document.getElementById('bizForm').addEventListener('submit', async function(e) 
         btn.textContent = 'שליחה';
     }
 });
+
+async function loadDirectory() {
+    const grid = document.getElementById('dirGrid');
+    const loading = document.getElementById('dirLoading');
+    const empty = document.getElementById('dirEmpty');
+    grid.innerHTML = '';
+    loading.style.display = 'block';
+    empty.style.display = 'none';
+
+    try {
+        const res = await fetch(API_URL);
+        const businesses = await res.json();
+        loading.style.display = 'none';
+
+        if (!businesses.length) {
+            empty.style.display = 'block';
+            return;
+        }
+
+        businesses.forEach(biz => {
+            const phone = (biz.phone || '').replace(/[^0-9+]/g, '');
+            const waPhone = phone.startsWith('0') ? '972' + phone.slice(1) : phone;
+            const waMsg = encodeURIComponent('היי, ראיתי את הפרטים שלך דרך קהילת ההורים של גאולים ואשמח לפרטים נוספים');
+            const icon = FIELD_ICONS[biz.business_field] || '&#11088;';
+            const initial = (biz.business_name || '?')[0];
+            const childInfo = biz.contact_info ? biz.contact_info.split('|')[0].trim() : '';
+
+            const imgHtml = biz.logo_url && biz.logo_url.startsWith('data:')
+                ? `<img class="biz-img" src="${biz.logo_url}" alt="${biz.business_name}">`
+                : `<div class="biz-placeholder">${initial}</div>`;
+
+            grid.innerHTML += `
+                <div class="biz-card">
+                    ${imgHtml}
+                    <div class="biz-name">${esc(biz.business_name)}</div>
+                    <div class="biz-field">${icon} ${esc(biz.business_field || '')}</div>
+                    <div class="biz-parent">${esc(biz.parent_name)}${childInfo ? ' · ' + esc(childInfo) : ''}</div>
+                    <div class="biz-actions">
+                        ${waPhone ? `<a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="btn-wa">&#128172; וואטסאפ</a>` : ''}
+                        ${phone ? `<a href="tel:${phone}" class="btn-phone">&#128222;</a>` : ''}
+                        ${biz.website_url ? `<a href="${biz.website_url}" target="_blank" class="btn-web">&#127760;</a>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+    } catch(err) {
+        loading.textContent = 'שגיאה בטעינה';
+    }
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 </script>
 </body>
 </html>
