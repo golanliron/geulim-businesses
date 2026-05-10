@@ -128,39 +128,65 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
 .success-msg p { font-size:15px; color:#666; line-height:1.6; }
 
 /* Directory */
-.dir-container { max-width:720px; margin:0 auto; padding:24px 20px; }
+.dir-container { max-width:780px; margin:0 auto; padding:24px 20px; }
 .dir-empty { text-align:center; padding:40px; color:#999; font-size:15px; }
-.dir-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:16px; }
+.dir-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:20px; }
 .biz-card {
-    background:#fff; border-radius:14px; padding:16px; text-align:center;
-    border:1px solid rgba(201,165,76,0.15); box-shadow:0 2px 12px rgba(15,27,51,0.04);
-    transition:transform 0.2s, box-shadow 0.2s;
+    background:#fff; border-radius:16px; text-align:center; overflow:hidden;
+    border:1px solid rgba(201,165,76,0.12);
+    box-shadow:0 2px 16px rgba(15,27,51,0.06);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    position:relative;
 }
-.biz-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(15,27,51,0.08); }
-.biz-card .biz-img {
-    width:72px; height:72px; border-radius:50%; object-fit:cover;
-    margin:0 auto 10px; display:block; border:2px solid var(--gold-glow);
+.biz-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(15,27,51,0.12); }
+.biz-card .biz-cover {
+    width:100%; height:120px; object-fit:cover; display:block;
 }
-.biz-card .biz-placeholder {
-    width:72px; height:72px; border-radius:50%; margin:0 auto 10px;
+.biz-card .biz-logo-wrap {
+    width:68px; height:68px; border-radius:50%; margin:-34px auto 0;
+    position:relative; z-index:2;
+    border:3px solid #fff; box-shadow:0 2px 8px rgba(15,27,51,0.12);
+    background:#fff; overflow:hidden;
+}
+.biz-card .biz-logo-wrap img {
+    width:100%; height:100%; object-fit:cover; display:block;
+}
+.biz-card .biz-logo-initial {
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
     background:linear-gradient(135deg, var(--navy) 0%, #2a3f6a 100%);
-    display:flex; align-items:center; justify-content:center;
-    font-size:28px; color:var(--gold); font-weight:700;
+    font-size:26px; color:var(--gold); font-weight:700;
+    font-family:'Frank Ruhl Libre', serif;
 }
-.biz-card .biz-name { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:2px; }
-.biz-card .biz-field { font-size:12px; color:var(--gold); font-weight:500; margin-bottom:6px; }
-.biz-card .biz-parent { font-size:12px; color:#888; margin-bottom:10px; }
-.biz-card .biz-actions { display:flex; gap:8px; justify-content:center; }
+.biz-card .biz-body { padding:10px 16px 16px; }
+.biz-card .biz-name {
+    font-size:18px; font-weight:800; color:var(--navy); margin-bottom:4px;
+    font-family:'Frank Ruhl Libre', 'Noto Serif Hebrew', serif;
+}
+.biz-card .biz-field-badge {
+    display:inline-block; padding:3px 12px; border-radius:20px;
+    background:linear-gradient(135deg, rgba(201,165,76,0.12) 0%, rgba(224,192,104,0.18) 100%);
+    font-size:12px; color:var(--gold); font-weight:600; margin-bottom:8px;
+    border:1px solid rgba(201,165,76,0.2);
+}
+.biz-card .biz-parent {
+    font-size:12px; color:#8899aa; margin-bottom:12px; line-height:1.5;
+}
+.biz-card .biz-divider {
+    width:40px; height:2px; background:linear-gradient(90deg, var(--gold), var(--gold-glow));
+    margin:0 auto 12px; border-radius:2px;
+}
+.biz-card .biz-actions { display:flex; gap:8px; justify-content:center; padding:0 8px; }
 .biz-card .biz-actions a {
-    display:inline-flex; align-items:center; gap:4px; padding:6px 12px;
-    border-radius:8px; font-size:12px; font-weight:500; text-decoration:none; transition:background 0.2s;
+    display:inline-flex; align-items:center; gap:5px; padding:8px 16px;
+    border-radius:10px; font-size:13px; font-weight:600; text-decoration:none;
+    transition:all 0.2s ease;
 }
 .btn-wa { background:#25D366; color:#fff; }
-.btn-wa:hover { background:#1da851; }
+.btn-wa:hover { background:#1da851; transform:scale(1.03); }
 .btn-phone { background:var(--navy); color:#fff; }
-.btn-phone:hover { background:#2a3f6a; }
-.btn-web { background:var(--gold-glow); color:var(--navy); border:1px solid rgba(201,165,76,0.3); }
-.btn-web:hover { background:rgba(201,165,76,0.25); }
+.btn-phone:hover { background:#2a3f6a; transform:scale(1.03); }
+.btn-web { background:linear-gradient(135deg, rgba(201,165,76,0.15), rgba(201,165,76,0.25)); color:var(--navy); font-weight:700; }
+.btn-web:hover { background:linear-gradient(135deg, rgba(201,165,76,0.25), rgba(201,165,76,0.35)); transform:scale(1.03); }
 
 .dir-loading { text-align:center; padding:40px; color:#999; }
 
@@ -451,21 +477,27 @@ async function loadDirectory() {
             const initial = (biz.business_name || '?')[0];
             const childInfo = biz.contact_info ? biz.contact_info.split('|')[0].trim() : '';
 
-            const fallbackImg = FIELD_IMAGES[biz.business_field] || FIELD_IMAGES['אחר'];
-            const imgHtml = biz.logo_url && biz.logo_url.startsWith('data:')
-                ? `<img class="biz-img" src="${biz.logo_url}" alt="${biz.business_name}">`
-                : `<img class="biz-img" src="${fallbackImg}" alt="${biz.business_field}">`;
+            const fieldImg = FIELD_IMAGES[biz.business_field] || FIELD_IMAGES['אחר'];
+            const hasLogo = biz.logo_url && biz.logo_url.startsWith('data:');
+            const coverSrc = hasLogo ? fieldImg : fieldImg;
+            const logoInner = hasLogo
+                ? `<img src="${biz.logo_url}" alt="${biz.business_name}">`
+                : `<div class="biz-logo-initial">${initial}</div>`;
 
             grid.innerHTML += `
                 <div class="biz-card">
-                    ${imgHtml}
-                    <div class="biz-name">${esc(biz.business_name)}</div>
-                    <div class="biz-field">${icon} ${esc(biz.business_field || '')}</div>
-                    <div class="biz-parent">${esc(biz.parent_name)}${childInfo ? ' · ' + esc(childInfo) : ''}</div>
-                    <div class="biz-actions">
-                        ${waPhone ? `<a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="btn-wa">&#128172; וואטסאפ</a>` : ''}
-                        ${phone ? `<a href="tel:${phone}" class="btn-phone">&#128222;</a>` : ''}
-                        ${biz.website_url ? `<a href="${biz.website_url}" target="_blank" class="btn-web">&#127760;</a>` : ''}
+                    <img class="biz-cover" src="${fieldImg}" alt="${biz.business_field}">
+                    <div class="biz-logo-wrap">${logoInner}</div>
+                    <div class="biz-body">
+                        <div class="biz-name">${esc(biz.business_name)}</div>
+                        <div class="biz-field-badge">${icon} ${esc(biz.business_field || '')}</div>
+                        <div class="biz-parent">${esc(biz.parent_name)}${childInfo ? ' · ' + esc(childInfo) : ''}</div>
+                        <div class="biz-divider"></div>
+                        <div class="biz-actions">
+                            ${waPhone ? `<a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="btn-wa">&#128172; וואטסאפ</a>` : ''}
+                            ${phone ? `<a href="tel:${phone}" class="btn-phone">&#128222;</a>` : ''}
+                            ${biz.website_url ? `<a href="${biz.website_url}" target="_blank" class="btn-web">&#127760;</a>` : ''}
+                        </div>
                     </div>
                 </div>
             `;
