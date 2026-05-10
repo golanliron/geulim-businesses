@@ -340,6 +340,22 @@ const FIELD_ICONS = {
     'ספורט וכושר':'&#127947;','שירותים לבית':'&#127968;','פיננסים וביטוח':'&#128176;',
     'תיירות ופנאי':'&#9992;','אחר':'&#11088;'
 };
+const FIELD_IMAGES = {
+    'אוכל ומזון':'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=300&fit=crop',
+    'בריאות ורווחה':'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop',
+    'חינוך והדרכה':'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=300&fit=crop',
+    'עיצוב ואדריכלות':'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=300&h=300&fit=crop',
+    'טכנולוגיה ודיגיטל':'https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=300&fit=crop',
+    'שיווק ופרסום':'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=300&fit=crop',
+    'משפטים וייעוץ':'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=300&h=300&fit=crop',
+    'טיפול ורפואה':'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=300&h=300&fit=crop',
+    'אמנות ויצירה':'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=300&fit=crop',
+    'ספורט וכושר':'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&h=300&fit=crop',
+    'שירותים לבית':'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&h=300&fit=crop',
+    'פיננסים וביטוח':'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop',
+    'תיירות ופנאי':'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=300&h=300&fit=crop',
+    'אחר':'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=300&h=300&fit=crop'
+};
 
 let selectedRole = 'הורה';
 let imageDataUrl = null;
@@ -435,9 +451,10 @@ async function loadDirectory() {
             const initial = (biz.business_name || '?')[0];
             const childInfo = biz.contact_info ? biz.contact_info.split('|')[0].trim() : '';
 
+            const fallbackImg = FIELD_IMAGES[biz.business_field] || FIELD_IMAGES['אחר'];
             const imgHtml = biz.logo_url && biz.logo_url.startsWith('data:')
                 ? `<img class="biz-img" src="${biz.logo_url}" alt="${biz.business_name}">`
-                : `<div class="biz-placeholder">${initial}</div>`;
+                : `<img class="biz-img" src="${fallbackImg}" alt="${biz.business_field}">`;
 
             grid.innerHTML += `
                 <div class="biz-card">
