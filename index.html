@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>גְּאוּלִי — הורים בעסקים</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+    --navy: #1B2A4A;
+    --navy-deep: #0F1B33;
+    --gold: #C9A54C;
+    --gold-light: #E0C068;
+    --gold-glow: rgba(201,165,76,0.15);
+}
+body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); min-height:100vh; }
+
+/* Hero */
+.hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    padding:60px 20px 50px; text-align:center; position:relative; overflow:hidden;
+}
+.hero::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-logo { margin-bottom:8px; }
+.hero-title {
+    font-family:'Noto Serif Hebrew',serif; font-size:56px; font-weight:900;
+    color:#fff; -webkit-text-stroke:2px var(--gold); paint-order:stroke fill;
+    letter-spacing:3px; line-height:1.1;
+}
+.hero-gold-line { width:80px; height:3px; background:var(--gold); margin:12px auto; border-radius:2px; opacity:0.7; }
+.hero-subtitle {
+    font-size:22px; font-weight:700; color:var(--gold-light); margin-top:8px; letter-spacing:1px;
+}
+.hero-desc {
+    font-size:15px; font-weight:300; color:rgba(255,255,255,0.5); margin-top:6px; letter-spacing:1px;
+}
+
+/* Content */
+.container { max-width:640px; margin:0 auto; padding:32px 20px; }
+
+.intro-card {
+    background:#fff; border-radius:16px; padding:28px 24px; margin-bottom:28px;
+    border:1px solid rgba(201,165,76,0.2); box-shadow:0 2px 20px rgba(15,27,51,0.06);
+}
+.intro-card h2 {
+    font-family:'Noto Serif Hebrew',serif; font-size:22px; font-weight:700;
+    color:var(--navy); margin-bottom:12px; line-height:1.4;
+}
+.intro-card p {
+    font-size:15px; line-height:1.8; color:#444; font-weight:400;
+}
+.intro-card .highlight {
+    background: var(--gold-glow); padding:12px 16px; border-radius:10px;
+    border-right:3px solid var(--gold); margin-top:16px; font-size:14px; line-height:1.7; color:var(--navy);
+}
+
+/* Form */
+.form-card {
+    background:#fff; border-radius:16px; padding:28px 24px;
+    border:1px solid rgba(201,165,76,0.2); box-shadow:0 2px 20px rgba(15,27,51,0.06);
+}
+.form-card h2 {
+    font-family:'Noto Serif Hebrew',serif; font-size:20px; font-weight:700;
+    color:var(--navy); margin-bottom:20px; text-align:center;
+}
+.form-group { margin-bottom:16px; }
+.form-group label {
+    display:block; font-size:14px; font-weight:500; color:var(--navy); margin-bottom:6px;
+}
+.form-group label .required { color:#c0392b; }
+.form-group input, .form-group select, .form-group textarea {
+    width:100%; padding:10px 14px; border:1.5px solid #ddd; border-radius:10px;
+    font-family:'Heebo',sans-serif; font-size:15px; color:var(--navy);
+    transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline:none; border-color:var(--gold);
+}
+.form-group select { appearance:none; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A4A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat left 14px center; padding-left:36px; }
+.form-group textarea { resize:vertical; min-height:60px; }
+
+.role-toggle { display:flex; gap:8px; }
+.role-toggle label {
+    flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+    padding:10px; border:1.5px solid #ddd; border-radius:10px; cursor:pointer;
+    font-size:14px; font-weight:500; transition:all 0.2s;
+}
+.role-toggle input { display:none; }
+.role-toggle input:checked + span { /* handled via JS */ }
+.role-toggle label.active {
+    border-color:var(--gold); background:var(--gold-glow); color:var(--navy);
+}
+
+.submit-btn {
+    width:100%; padding:14px; border:none; border-radius:12px; cursor:pointer;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color:var(--navy); font-family:'Heebo',sans-serif; font-size:17px; font-weight:700;
+    letter-spacing:0.5px; transition:transform 0.15s, box-shadow 0.15s; margin-top:8px;
+}
+.submit-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,165,76,0.3); }
+.submit-btn:active { transform:translateY(0); }
+.submit-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+/* Success */
+.success-msg {
+    display:none; text-align:center; padding:40px 20px;
+}
+.success-msg .check { font-size:48px; margin-bottom:12px; }
+.success-msg h3 { font-family:'Noto Serif Hebrew',serif; font-size:22px; color:var(--navy); margin-bottom:8px; }
+.success-msg p { font-size:15px; color:#666; line-height:1.6; }
+
+/* Footer */
+.footer {
+    text-align:center; padding:24px 20px; font-size:12px; color:rgba(27,42,74,0.4);
+    letter-spacing:0.5px;
+}
+
+/* Mobile */
+@media(max-width:480px) {
+    .hero { padding:40px 16px 36px; }
+    .hero-title { font-size:42px; }
+    .hero-subtitle { font-size:18px; }
+    .container { padding:24px 16px; }
+    .intro-card, .form-card { padding:22px 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+    <svg class="hero-logo" width="56" height="56" viewBox="0 0 72 72" fill="none">
+        <rect x="3" y="3" width="66" height="66" rx="16" stroke="rgba(201,165,76,0.4)" stroke-width="1.5"/>
+        <g transform="translate(36,35)">
+            <path d="M0 18 L0 0" stroke="#C9A54C" stroke-width="2" stroke-linecap="round"/>
+            <path d="M0 6 C-4 2 -13 1 -14 -8 C-5 -5 -1 -1 0 4" stroke="#C9A54C" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M0 1 C4 -3 13 -6 16 -14 C7 -10 1 -4 0 1" stroke="#C9A54C" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M0 -3 C-2 -9 0 -17 5 -21 C3 -13 1 -7 0 -3" stroke="#C9A54C" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        </g>
+    </svg>
+    <div class="hero-title">גְּאוּלִי</div>
+    <div class="hero-gold-line"></div>
+    <div class="hero-subtitle">הורים בעסקים</div>
+    <div class="hero-desc">בית ספר גאולים, שכונת בקעה, ירושלים</div>
+</div>
+
+<div class="container">
+    <div class="intro-card">
+        <h2>קהילה שמפרגנת — מתחילה מהבית</h2>
+        <p>
+            אנחנו מאמינים שבקהילה חזקה כולם מרוויחים.
+            בין ההורים ואנשי הצוות של בית ספר גאולים יש בעלי עסקים, יועצים, נותני שירות ואנשי מקצוע מכל תחום — ואנחנו רוצים להכיר אתכם!
+        </p>
+        <div class="highlight">
+            המטרה פשוטה: ליצור מדריך עסקים קהילתי, כדי שנוכל לפרגן אחד לשנייה, להמליץ, לצרוך מקומי ולחזק את הקהילה שלנו מבפנים.
+        </div>
+    </div>
+
+    <div class="form-card" id="formCard">
+        <h2>ספרו לנו על העסק שלכם</h2>
+        <form id="bizForm">
+            <div class="form-group">
+                <label>שם מלא <span class="required">*</span></label>
+                <input type="text" id="parentName" required placeholder="השם שלכם">
+            </div>
+
+            <div class="form-group">
+                <label>אני... <span class="required">*</span></label>
+                <div class="role-toggle">
+                    <label class="active" onclick="setRole(this,'הורה')">
+                        <input type="radio" name="role" value="הורה" checked>
+                        <span>הורה</span>
+                    </label>
+                    <label onclick="setRole(this,'איש/ת צוות')">
+                        <input type="radio" name="role" value="איש/ת צוות">
+                        <span>איש/ת צוות</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>שם העסק <span class="required">*</span></label>
+                <input type="text" id="bizName" required placeholder="שם העסק או הפעילות">
+            </div>
+
+            <div class="form-group">
+                <label>תחום <span class="required">*</span></label>
+                <select id="bizField" required>
+                    <option value="">בחרו תחום</option>
+                    <option value="אוכל ומזון">אוכל ומזון</option>
+                    <option value="בריאות ורווחה">בריאות ורווחה</option>
+                    <option value="חינוך והדרכה">חינוך והדרכה</option>
+                    <option value="עיצוב ואדריכלות">עיצוב ואדריכלות</option>
+                    <option value="טכנולוגיה ודיגיטל">טכנולוגיה ודיגיטל</option>
+                    <option value="שיווק ופרסום">שיווק ופרסום</option>
+                    <option value="משפטים וייעוץ">משפטים וייעוץ</option>
+                    <option value="טיפול ורפואה">טיפול ורפואה</option>
+                    <option value="אמנות ויצירה">אמנות ויצירה</option>
+                    <option value="ספורט וכושר">ספורט וכושר</option>
+                    <option value="שירותים לבית">שירותים לבית</option>
+                    <option value="פיננסים וביטוח">פיננסים וביטוח</option>
+                    <option value="תיירות ופנאי">תיירות ופנאי</option>
+                    <option value="אחר">אחר</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>קישור לאתר או רשתות חברתיות</label>
+                <input type="url" id="bizUrl" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label>טלפון ליצירת קשר <span class="required">*</span></label>
+                <input type="tel" id="bizPhone" required placeholder="050-0000000">
+            </div>
+
+            <div class="form-group">
+                <label>איך הכי נוח ליצור איתכם קשר?</label>
+                <input type="text" id="contactInfo" placeholder="וואטסאפ, טלפון, מייל...">
+            </div>
+
+            <div class="form-group">
+                <label>משהו שחשוב לכם שנדע על העסק</label>
+                <textarea id="bizNote" placeholder="תיאור קצר, מבצע מיוחד, הנחה לקהילה..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">שליחה</button>
+        </form>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+        <div class="check">&#10003;</div>
+        <h3>תודה רבה!</h3>
+        <p>קיבלנו את הפרטים. העסק שלכם ייכנס למדריך הקהילתי של גאולי.<br>יחד אנחנו בונים קהילה שמפרגנת!</p>
+    </div>
+</div>
+
+<div class="footer">גְּאוּלִי — קהילת ההורים החברתית של בית ספר גאולים</div>
+
+<script>
+const SUPA_URL = 'https://vhmwijzcrqjjquxomccq.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZobXdpanpjcnFqanF1eG9tY2NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1Nzk0MDgsImV4cCI6MjA4OTE1NTQwOH0.rMnAcdMiPddUAoap63tMiqeQQanJoF-HDmzra7P-5Cc';
+
+let selectedRole = 'הורה';
+
+function setRole(el, role) {
+    selectedRole = role;
+    document.querySelectorAll('.role-toggle label').forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+}
+
+document.getElementById('bizForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'שולח...';
+
+    const data = {
+        parent_name: document.getElementById('parentName').value.trim(),
+        role: selectedRole,
+        business_name: document.getElementById('bizName').value.trim(),
+        business_field: document.getElementById('bizField').value,
+        website_url: document.getElementById('bizUrl').value.trim() || null,
+        phone: document.getElementById('bizPhone').value.trim(),
+        contact_info: document.getElementById('contactInfo').value.trim() || null,
+        logo_url: document.getElementById('bizNote').value.trim() || null
+    };
+
+    try {
+        const res = await fetch(SUPA_URL + '/rest/v1/geuli_businesses', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPA_KEY,
+                'Authorization': 'Bearer ' + SUPA_KEY,
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('err');
+        document.getElementById('formCard').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+    } catch(err) {
+        alert('שגיאה בשליחה, נסו שוב');
+        btn.disabled = false;
+        btn.textContent = 'שליחה';
+    }
+});
+</script>
+</body>
+</html>
