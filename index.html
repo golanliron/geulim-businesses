@@ -241,8 +241,7 @@ body { font-family:'Heebo',sans-serif; background:#F8F6F1; color:var(--navy); mi
 <div class="footer">גְּאוּלִי — קהילת ההורים החברתית של בית ספר גאולים</div>
 
 <script>
-const SUPA_URL = 'https://vhmwijzcrqjjquxomccq.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZobXdpanpjcnFqanF1eG9tY2NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1Nzk0MDgsImV4cCI6MjA4OTE1NTQwOH0.rMnAcdMiPddUAoap63tMiqeQQanJoF-HDmzra7P-5Cc';
+const API_URL = 'https://vhmwijzcrqjjquxomccq.supabase.co/functions/v1/geuli-business';
 
 let selectedRole = 'הורה';
 
@@ -266,18 +265,13 @@ document.getElementById('bizForm').addEventListener('submit', async function(e) 
         website_url: document.getElementById('bizUrl').value.trim() || null,
         phone: document.getElementById('bizPhone').value.trim(),
         contact_info: document.getElementById('contactInfo').value.trim() || null,
-        logo_url: document.getElementById('bizNote').value.trim() || null
+        notes: document.getElementById('bizNote').value.trim() || null
     };
 
     try {
-        const res = await fetch(SUPA_URL + '/rest/v1/geuli_businesses', {
+        const res = await fetch(API_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'apikey': SUPA_KEY,
-                'Authorization': 'Bearer ' + SUPA_KEY,
-                'Prefer': 'return=minimal'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
         if (!res.ok) throw new Error('err');
